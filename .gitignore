@@ -1,0 +1,14 @@
+# local-only Claude Code settings
+.claude/settings.local.json
+
+# dependencies / build leftovers (โปรเจกต์นี้ไม่มี build จริง แต่กันไว้)
+node_modules/
+package-lock.json
+
+# OS junk
+Thumbs.db
+.DS_Store
+
+# backups
+*.bak
+*.tmp

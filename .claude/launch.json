@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "cgsi-site",
+      "runtimeExecutable": "C:\\Users\\rakpa\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "runtimeArgs": ["-m", "http.server", "8137", "--directory", "C:\\Claude Project\\CGSI Private Fund"],
+      "port": 8137
+    }
+  ]
+}

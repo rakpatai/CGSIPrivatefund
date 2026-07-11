@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CGSI Private Fund — Discretionary Portfolio Management</title>
+<meta name="description" content="บริการกองทุนส่วนบุคคล (Private Fund) ที่ผสานงานวิจัยเชิงลึกระดับสถาบันเข้ากับการบริหารพอร์ตที่ออกแบบเฉพาะสำหรับท่าน — เงียบขรึม แม่นยำ และมีวินัย">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231A2744'/%3E%3Crect x='11' y='11' width='10' height='10' transform='rotate(45 16 16)' fill='none' stroke='%23C9A84C' stroke-width='1.25'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Cormorant+SC:wght@400;500&family=Trirong:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- Crest: double circle keyline, CGSI, laurel sprigs -->
+    <symbol id="crest" viewBox="0 0 80 80">
+      <circle cx="40" cy="40" r="38" fill="none" stroke="currentColor" stroke-width="1"/>
+      <circle cx="40" cy="40" r="32" fill="none" stroke="#BA9866" stroke-width="0.5"/>
+      <text x="40" y="38.5" text-anchor="middle" font-family="'Cormorant SC',serif" font-size="13.5" font-weight="500" letter-spacing="2.6" fill="currentColor">CGSI</text>
+      <g stroke="#BA9866" stroke-width="0.75" fill="none" stroke-linecap="round">
+        <path d="M28 50 q6 3 10 2"/>
+        <path d="M30 49.2 q0.5 -2.6 -1.6 -3.8 M32.5 50.4 q0.8 -2.5 -1 -4 M35.2 51.1 q1 -2.3 -0.6 -4 M37.9 51.4 q1.2 -2.1 -0.2 -3.9"/>
+        <path d="M52 50 q-6 3 -10 2"/>
+        <path d="M50 49.2 q-0.5 -2.6 1.6 -3.8 M47.5 50.4 q-0.8 -2.5 1 -4 M44.8 51.1 q-1 -2.3 0.6 -4 M42.1 51.4 q-1.2 -2.1 0.2 -3.9"/>
+      </g>
+      <rect x="37.2" y="55.2" width="5.6" height="5.6" transform="rotate(45 40 58)" fill="none" stroke="#BA9866" stroke-width="0.6"/>
+    </symbol>
+    <!-- Engraved icons: 0.75px navy strokes, no fill -->
+    <symbol id="icon-compass" viewBox="0 0 48 48">
+      <g fill="none" stroke="currentColor" stroke-width="0.75">
+        <circle cx="24" cy="24" r="20"/><circle cx="24" cy="24" r="16.5"/>
+        <path d="M24 6.5v4M24 37.5v4M6.5 24h4M37.5 24h4"/>
+        <path d="M24 10.8 L27.6 24 L24 37.2 L20.4 24 Z"/>
+        <path d="M10.8 24 L24 20.4 L37.2 24 L24 27.6 Z" opacity="0.55"/>
+        <circle cx="24" cy="24" r="1.6"/>
+      </g>
+    </symbol>
+    <symbol id="icon-column" viewBox="0 0 48 48">
+      <g fill="none" stroke="currentColor" stroke-width="0.75">
+        <path d="M10 41.5h28M12 38.5h24M13.5 35.5h21"/>
+        <path d="M16.5 35.5V15M20.5 35.5V15M24 35.5V15M27.5 35.5V15M31.5 35.5V15"/>
+        <path d="M13.5 15h21M12 12h24"/>
+        <path d="M12 12c0-2.4 2-3 4-3h16c2 0 4 0.6 4 3" opacity="0.7"/>
+        <path d="M10 44.5h28" opacity="0.55"/>
+      </g>
+    </symbol>
+    <symbol id="icon-scale" viewBox="0 0 48 48">
+      <g fill="none" stroke="currentColor" stroke-width="0.75">
+        <path d="M24 8v30M18 40.5h12M21 38h6"/>
+        <circle cx="24" cy="6.8" r="1.4"/>
+        <path d="M10 14h28"/>
+        <path d="M10 14l-5 12M10 14l5 12M5 26h10M5 26c0 3 2.2 5 5 5s5-2 5-5"/>
+        <path d="M38 14l-5 12M38 14l5 12M33 26h10M33 26c0 3 2.2 5 5 5s5-2 5-5"/>
+      </g>
+    </symbol>
+    <!-- Cross-hatch etching underfill (Folio graft) -->
+    <pattern id="crosshatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#1A2744" stroke-width="0.5" opacity="0.28"/>
+    </pattern>
+    <!-- Watermarks for research plates -->
+    <symbol id="wm-molecule" viewBox="0 0 120 120">
+      <g fill="none" stroke="#1A2744" stroke-width="0.9">
+        <circle cx="34" cy="42" r="7"/><circle cx="62" cy="28" r="7"/><circle cx="88" cy="46" r="7"/>
+        <circle cx="50" cy="70" r="7"/><circle cx="80" cy="84" r="7"/><circle cx="30" cy="92" r="7"/>
+        <path d="M40 38l16-7M68 31l14 11M38 48l8 15M56 74l17 7M44 75l-9 12M84 52l-2 25"/>
+      </g>
+    </symbol>
+    <symbol id="wm-chip" viewBox="0 0 120 120">
+      <g fill="none" stroke="#1A2744" stroke-width="0.9">
+        <rect x="42" y="42" width="36" height="36"/>
+        <rect x="50" y="50" width="20" height="20"/>
+        <path d="M52 42V22M60 42V16M68 42V22M52 78v20M60 78v26M68 78v20M42 52H22M42 60H14M42 68H22M78 52h20M78 60h26M78 68h20"/>
+        <circle cx="52" cy="20" r="2"/><circle cx="60" cy="14" r="2"/><circle cx="68" cy="20" r="2"/>
+        <circle cx="52" cy="100" r="2"/><circle cx="60" cy="106" r="2"/><circle cx="68" cy="100" r="2"/>
+        <circle cx="20" cy="52" r="2"/><circle cx="12" cy="60" r="2"/><circle cx="20" cy="68" r="2"/>
+        <circle cx="100" cy="52" r="2"/><circle cx="106" cy="60" r="2"/><circle cx="100" cy="68" r="2"/>
+      </g>
+    </symbol>
+    <symbol id="wm-ingot" viewBox="0 0 120 120">
+      <g fill="none" stroke="#8F7448" stroke-width="0.9">
+        <path d="M35 52h50l8 22H27z"/>
+        <path d="M42 55h36l5.5 16H36.5z" opacity="0.6"/>
+        <path d="M48 40h24l5 9H43z"/>
+        <path d="M60 20v8M60 96v-8M40 26l4 7M80 26l-4 7"/>
+      </g>
+    </symbol>
+    <symbol id="wm-toy" viewBox="0 0 120 120">
+      <g fill="none" stroke="#1A2744" stroke-width="0.9">
+        <rect x="30" y="46" width="60" height="52" rx="3"/>
+        <path d="M30 60h60M60 46v52M30 46l10-14h40l10 14M40 32l8 14M80 32l-8 14"/>
+        <circle cx="45" cy="78" r="7"/>
+        <path d="M40 72l-4-6M50 72l4-6"/>
+        <circle cx="43" cy="77" r="0.9" fill="#1A2744"/><circle cx="47" cy="77" r="0.9" fill="#1A2744"/>
+        <path d="M70 74h12M76 68v12" opacity="0.7"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="page-edge" aria-hidden="true"><div class="page-edge__thumb" id="pageEdgeThumb"></div></div>
+
+<a class="skip-link" href="#top">ข้ามไปยังเนื้อหา</a>
+
+<header class="nav" id="siteNav">
+  <a class="nav__crest" href="#top" aria-label="CGSI Private Fund — กลับขึ้นด้านบน">
+    <svg width="30" height="30" aria-hidden="true"><use href="#crest"/></svg>
+  </a>
+  <nav class="nav__links" aria-label="เมนูหลัก">
+    <a href="#philosophy">Philosophy</a>
+    <a href="#mandates">Mandates</a>
+    <a href="#process">Process</a>
+    <a href="#research">Research</a>
+    <a href="#performance">Performance</a>
+    <a href="#insights">Insights</a>
+    <a href="media.html">Media</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="nav__right">
+    <span class="nav__lang" title="English version — in preparation" aria-hidden="true"><b>TH</b><i></i><span>EN</span></span>
+    <button class="nav__burger" id="navBurger" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" hidden>
+  <nav aria-label="เมนูหลัก (มือถือ)">
+    <a href="#philosophy">ปรัชญา · Philosophy</a>
+    <a href="#mandates">กลยุทธ์ · Mandates</a>
+    <a href="#process">กระบวนการ · Process</a>
+    <a href="#research">กรณีศึกษา · Research</a>
+    <a href="#performance">ผลการดำเนินงาน · Performance</a>
+    <a href="#why">ทำไมต้อง CGSI · Why CGSI</a>
+    <a href="#team">ทีมงาน · Team</a>
+    <a href="#insights">บทความ · Insights</a>
+    <a href="media.html">วีดีโอ &amp; พอดแคสต์ · Media</a>
+    <a href="#begin">เริ่มต้นลงทุน · Begin</a>
+    <a href="#contact">ติดต่อ · Contact</a>
+  </nav>
+</div>
+
+<div class="folio-rail" id="folioRail" aria-hidden="true"><span id="folioCurrent">I</span><i></i><span class="folio-rail__total">XII</span></div>
+
+<main id="top" tabindex="-1">
+
+<!-- ══════════════ S1 · HERO — THE FRONTISPIECE ══════════════ -->
+<section class="hero" id="hero" data-folio="I">
+  <div class="hero__rosette" id="rosette" aria-hidden="true"></div>
+  <div class="hero__brackets" aria-hidden="true">
+    <svg class="bk bk--tl" viewBox="0 0 48 48"><path d="M48 1H1V48" fill="none"/></svg>
+    <svg class="bk bk--tr" viewBox="0 0 48 48"><path d="M0 1H47V48" fill="none"/></svg>
+    <svg class="bk bk--bl" viewBox="0 0 48 48"><path d="M48 47H1V0" fill="none"/></svg>
+    <svg class="bk bk--br" viewBox="0 0 48 48"><path d="M0 47H47V0" fill="none"/></svg>
+  </div>
+  <div class="hero__stack">
+    <svg class="hero__crest" width="76" height="76" aria-hidden="true"><use href="#crest"/></svg>
+    <div class="ornament-rule hero__rule" aria-hidden="true"><i></i></div>
+    <p class="eyebrow hero__eyebrow">CGSI Private Fund · Discretionary Portfolio Management</p>
+    <h1 class="hero__title">ความมั่งคั่งของท่าน<br>สมควรได้รับการดูแลอย่างประณีต</h1>
+    <p class="hero__latin" lang="en">Wealth, quietly compounded.</p>
+    <p class="hero__sub">บริการกองทุนส่วนบุคคล (Private Fund) จาก CGS International ในเครือ China Galaxy Securities — ผสานงานวิจัยเชิงลึกจากเครือข่ายระดับภูมิภาค เข้ากับการบริหารพอร์ตแบบ Discretionary ที่ออกแบบเฉพาะสำหรับท่านเพียงผู้เดียว</p>
+    <div class="hero__ctas">
+      <a class="btn-cert" href="#contact">นัดหมายสนทนาเป็นการส่วนตัว</a>
+      <a class="link-dash" href="#philosophy">Our Philosophy <span aria-hidden="true">—</span></a>
+    </div>
+    <p class="hero__micro">การสนทนาเบื้องต้นไม่มีค่าใช้จ่าย และเป็นความลับทุกกรณี</p>
+  </div>
+  <div class="hero__scrollcue" aria-hidden="true"><span>Scroll</span><i></i></div>
+  <div class="hero__sill shimmer-line" aria-hidden="true"></div>
+</section>
+
+<!-- ══════════════ S2 · PHILOSOPHY ══════════════ -->
+<section class="section" id="philosophy" data-folio="II">
+  <header class="section__head reveal">
+    <p class="eyebrow">Philosophy</p>
+    <div class="ornament-rule" aria-hidden="true"><i></i></div>
+    <h2>ปรัชญาการลงทุน — <span class="nw">สามเสาหลักที่เราไม่เคยละทิ้ง</span></h2>
+    <p class="lead">เราเชื่อว่าความมั่งคั่งที่ยั่งยืนไม่ได้เกิดจากการไล่ตามกระแส แต่เกิดจากหลักคิดที่มั่นคง ถูกนำไปปฏิบัติซ้ำแล้วซ้ำเล่าด้วยวินัย ตลอดทุกวัฏจักรของตลาด</p>
+  </header>
+  <div class="pillars">
+    <article class="pillar reveal" style="--i:0">
+      <span class="pillar__numeral" aria-hidden="true">I</span>
+      <svg class="pillar__icon" width="44" height="44" aria-hidden="true"><use href="#icon-compass"/></svg>
+      <h3 class="pillar__title">High Conviction เพียง 10–20 บริษัท<small>Focused Portfolio</small></h3>
+      <p>เราคัดสรรเฉพาะบริษัทที่เชื่อมั่นว่ามีโอกาสสร้างผลตอบแทนคาดหวังสูงกว่า 20% ต่อปี และอธิบายเหตุผลที่หุ้นจะ Outperform ได้ชัดเจน — หุ้น 3 ประเภท: Growth, Turnaround และ Opportunistic เมื่อบริษัทใดมีลักษณะร่วมครบทั้งสาม นั่นคือ Sweet Spot ที่มีโอกาสเป็น "Super Stock" เป้าหมายหลักของพอร์ต</p>
+    </article>
+    <article class="pillar reveal" style="--i:1">
+      <span class="pillar__numeral" aria-hidden="true">II</span>
+      <svg class="pillar__icon" width="44" height="44" aria-hidden="true"><use href="#icon-column"/></svg>
+      <h3 class="pillar__title">งานวิจัยเชิงลึกสไตล์ Bottom-up<small>Research-led Conviction</small></h3>
+      <p>ทีมของเราเชี่ยวชาญการวิเคราะห์เจาะลึกรายบริษัท ตั้งแต่แบบจำลองการเงินและกรอบมูลค่าที่เหมาะสม (ถูก–สมเหตุสมผล–แพง) ไปจนถึงงานภาคสนามจริง — พบทีมวิจัย CGS ที่ปักกิ่ง เข้าประชุมผู้ถือหุ้น และ Channel Check หน้าร้านจริง — Conviction ของเราจึงมีที่มา ไม่ใช่ความรู้สึก</p>
+    </article>
+    <article class="pillar reveal" style="--i:2">
+      <span class="pillar__numeral" aria-hidden="true">III</span>
+      <svg class="pillar__icon" width="44" height="44" aria-hidden="true"><use href="#icon-scale"/></svg>
+      <h3 class="pillar__title">วินัยแบบ Core–Satellite<small>Discipline &amp; Risk Control</small></h3>
+      <p>พอร์ตหลัก (Core) ซื้อและถือบริษัทเกรด A+ ที่ผ่านวิกฤตได้ 3–5 ปี ส่วนพอร์ตเสริม (Satellite) เทรดตามระบบ High Conviction RTS — ยอมขาดทุนเล็กเพื่อตัดขาดทุนใหญ่ในขาลง และเก็บกำไรก้อนใหญ่ในขาขึ้น — บริหารความเสี่ยงอย่างเป็นระบบ ไม่ใช้อารมณ์</p>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════════ S3 · MANDATES ══════════════ -->
+<section class="section band band--warm" id="mandates" data-folio="III">
+  <header class="section__head reveal">
+    <p class="eyebrow">Mandates</p>
+    <div class="ornament-rule" aria-hidden="true"><i></i></div>
+    <h2>กลยุทธ์การบริหาร — <span class="nw">สี่กลยุทธ์ หนึ่งมาตรฐาน</span></h2>
+    <p class="lead">กลยุทธ์เรือธงของเราคือ Smart Equity Tactical Asset Allocation — จัดสรรสินทรัพย์ตาม Megatrend ของทศวรรษหน้า พร้อมกลยุทธ์เฉพาะทางอีกสามรูปแบบให้เลือกตามวัตถุประสงค์และระดับความเสี่ยงของท่าน</p>
+  </header>
+
+  <article class="cert cert--flagship reveal">
+    <svg class="cert__bracket" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 1H1V24" fill="none"/></svg>
+    <div class="cert--flagship__head">
+      <p class="cert__flag">Flagship Strategy</p>
+      <p class="cert__name">Smart Equity Tactical Asset Allocation</p>
+      <p class="cert__thai">"เน้นสร้างผลตอบแทนที่ดีและมีความมั่นคง"</p>
+      <div class="ornament-rule ornament-rule--sm" aria-hidden="true"><i></i></div>
+      <p class="cert__desc">จัดสรรการลงทุนข้ามสินทรัพย์ที่มีศักยภาพเติบโตระยะยาว สอดคล้องกับ Megatrend ที่กำหนดทิศทางทศวรรษหน้า — ผู้จัดการกองทุนช่วยจัด Asset Allocation ให้เหมาะสมตามช่วงเวลา สร้างผลตอบแทนคาดหวังที่สูงเทียบกับการลงทุนในหุ้นไทย พร้อมเน้นการบริหารความเสี่ยงที่ดี ลดโอกาสขาดทุนหนัก</p>
+    </div>
+    <dl class="cert__specs cert--flagship__specs">
+      <div><dt>เป้าหมายผลตอบแทน</dt><dd>7–10% ต่อปี<button class="fn" data-fn="4" aria-label="อ่านหมายเหตุที่ 4">⁴</button></dd></div>
+      <div><dt>สินทรัพย์ที่ลงทุน</dt><dd>หุ้นไทย · หุ้นต่างประเทศ · PF&amp;REITs · Commodities · BTC</dd></div>
+      <div><dt>ระยะเวลาแนะนำ</dt><dd>มากกว่า 3 ปี · ไม่มี Lock-up</dd></div>
+      <div><dt>Benchmark</dt><dd>7% Absolute Return</dd></div>
+    </dl>
+  </article>
+
+  <div class="mandates">
+    <article class="cert reveal" style="--i:0">
+      <svg class="cert__bracket" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 1H1V24" fill="none"/></svg>
+      <p class="cert__name">High Conviction China Focus</p>
+      <p class="cert__thai">หุ้นจีนความเชื่อมั่นสูง</p>
+      <div class="ornament-rule ornament-rule--sm" aria-hidden="true"><i></i></div>
+      <p class="cert__desc">ลงทุนตรงในหุ้นจีนและฮ่องกง (ไม่ใช่ Feeder Fund) คัดสรรบริษัทชั้นดีในอุตสาหกรรมที่มีแนวโน้มเติบโตสูง ในจังหวะที่ Valuation ของตลาดจีนถูกที่สุดในเอเชีย</p>
+      <dl class="cert__specs">
+        <div><dt>สินทรัพย์</dt><dd>หุ้นจีน &amp; ฮ่องกง</dd></div>
+        <div><dt>Benchmark</dt><dd>10% Absolute Return</dd></div>
+        <div><dt>ระยะเวลาแนะนำ</dt><dd>มากกว่า 3 ปี</dd></div>
+      </dl>
+      <div class="cert__risk"><span class="cert__risk-label">Risk Profile</span><span class="gauge" role="img" aria-label="ระดับความเสี่ยง 5 จาก 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
+    </article>
+    <article class="cert reveal" style="--i:1">
+      <svg class="cert__bracket" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 1H1V24" fill="none"/></svg>
+      <p class="cert__name">High Conviction GEQ</p>
+      <p class="cert__thai">หุ้นไทยและต่างประเทศความเชื่อมั่นสูง</p>
+      <div class="ornament-rule ornament-rule--sm" aria-hidden="true"><i></i></div>
+      <p class="cert__desc">พอร์ตหุ้น High Conviction ทั้งไทยและต่างประเทศ เลือกบริษัทที่มีโอกาสสร้างผลตอบแทนคาดหวังสูงจากหุ้น 3 ประเภท — Growth, Turnaround และ Opportunistic</p>
+      <dl class="cert__specs">
+        <div><dt>สินทรัพย์</dt><dd>หุ้นไทย &amp; ต่างประเทศ</dd></div>
+        <div><dt>Benchmark</dt><dd>10% Absolute Return</dd></div>
+        <div><dt>ระยะเวลาแนะนำ</dt><dd>มากกว่า 3 ปี</dd></div>
+      </dl>
+      <div class="cert__risk"><span class="cert__risk-label">Risk Profile</span><span class="gauge" role="img" aria-label="ระดับความเสี่ยง 4 จาก 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div>
+    </article>
+    <article class="cert reveal" style="--i:2">
+      <svg class="cert__bracket" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 1H1V24" fill="none"/></svg>
+      <p class="cert__name">Passive Income</p>
+      <p class="cert__thai">กระแสรายได้สม่ำเสมอ</p>
+      <div class="ornament-rule ornament-rule--sm" aria-hidden="true"><i></i></div>
+      <p class="cert__desc">พอร์ตกองทุนอสังหาริมทรัพย์และ REITs เน้นกระแสรายได้ประจำ พร้อมนโยบายแบ่งปันรายได้ 5% ต่อปี เหมาะสำหรับความมั่งคั่งที่ภารกิจหลักคือการรักษาและส่งต่อ</p>
+      <dl class="cert__specs">
+        <div><dt>สินทรัพย์</dt><dd>PF&amp;REITs</dd></div>
+        <div><dt>Benchmark</dt><dd>5% Absolute Return</dd></div>
+        <div><dt>Share of Income</dt><dd>5% ต่อปี</dd></div>
+      </dl>
+      <div class="cert__risk"><span class="cert__risk-label">Risk Profile</span><span class="gauge" role="img" aria-label="ระดับความเสี่ยง 2 จาก 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div>
+    </article>
+  </div>
+  <p class="section__micro reveal">ข้อมูลกลยุทธ์และเงื่อนไขจากเอกสารนำเสนอ Smart Equity Tactical Asset Allocation (2026) — กลยุทธ์การลงทุนอาจปรับเปลี่ยนโดยผู้จัดการกองทุนตามสถานการณ์ตลาด เงื่อนไขจริงเป็นไปตามสัญญาแต่ละราย</p>
+</section>
+
+<!-- ══════════════ S4 · PROCESS ══════════════ -->
+<section class="section" id="process" data-folio="IV">
+  <header class="section__head reveal">
+    <p class="eyebrow">Investment Process</p>
+    <div class="ornament-rule" aria-hidden="true"><i></i></div>
+    <h2>กระบวนการลงทุน — <span class="nw">ห้าขั้นตอน หนึ่งวินัย</span></h2>
+    <p class="lead">ความสม่ำเสมอของผลลัพธ์เริ่มต้นจากความสม่ำเสมอของกระบวนการ ทุกพอร์ตภายใต้การดูแลของเราเดินผ่านห้าขั้นตอนเดียวกัน โดยไม่มีข้อยกเว้น</p>
+  </header>
+  <div class="timeline reveal">
+    <div class="timeline__rail" aria-hidden="true"></div>
+    <ol class="timeline__steps">
+      <li class="step" style="--i:0">
+        <span class="step__num" aria-hidden="true">01</span><i class="step__node" aria-hidden="true"></i>
+        <h3 class="step__title">ทำความเข้าใจท่าน<small>Discovery &amp; Suitability</small></h3>
+        <p>เข้าใจเป้าหมาย ภาระผูกพัน และความเสี่ยงที่ยอมรับได้จริงก่อนตัวเลขใด ๆ — สรุปเป็น Investment Policy Statement ของท่าน</p>
+      </li>
+      <li class="step" style="--i:1">
+        <span class="step__num" aria-hidden="true">02</span><i class="step__node" aria-hidden="true"></i>
+        <h3 class="step__title">กลั่นกรองจักรวาลการลงทุน<small>Screening</small></h3>
+        <p>คัดกรองหลักทรัพย์หลายพันตัวด้วย ROIC กระแสเงินสดอิสระ และคุณภาพงบดุล ผนวก Insight จากเครือข่ายทั่วภูมิภาค</p>
+      </li>
+      <li class="step" style="--i:2">
+        <span class="step__num" aria-hidden="true">03</span><i class="step__node" aria-hidden="true"></i>
+        <h3 class="step__title">วิจัยเชิงลึกและประเมินมูลค่า<small>Research &amp; Valuation</small></h3>
+        <p>แยกชิ้นส่วนธุรกิจจนได้กรอบมูลค่าที่มีเหตุผล — ถูก, สมเหตุสมผล, แพง — ใช้เวลาศึกษาต่อเนื่องจนความเข้าใจถึงระดับ 90–100% ก่อนลงทุนจริง</p>
+      </li>
+      <li class="step" style="--i:3">
+        <span class="step__num" aria-hidden="true">04</span><i class="step__node" aria-hidden="true"></i>
+        <h3 class="step__title">สร้างพอร์ต Core–Satellite<small>Construction &amp; Execution</small></h3>
+        <p>พอร์ตหลัก Buy &amp; Hold บริษัทเกรด A+ ถือยาว 3–5 ปี พอร์ตเสริมเทรดตามระบบ RTS จับจังหวะหุ้น Turnaround พร้อมกลไก Stop Loss</p>
+      </li>
+      <li class="step" style="--i:4">
+        <span class="step__num" aria-hidden="true">05</span><i class="step__node" aria-hidden="true"></i>
+        <h3 class="step__title">เฝ้าติดตามและรายงาน<small>Monitoring &amp; Reporting</small></h3>
+        <p>ทุกสถานะมี Thesis เขียนไว้ล่วงหน้า รายงานเชิงลึกรายเดือน และประชุมทบทวนพอร์ตร่วมกันทุกไตรมาส</p>
+      </li>
+    </ol>
+  </div>
+  <p class="section__micro reveal">กระบวนการทั้งหมดดำเนินการภายใต้กรอบการกำกับดูแลของสำนักงาน ก.ล.ต. และทรัพย์สินของท่านเก็บรักษาแยกไว้กับผู้รับฝากทรัพย์สิน (Custodian) อิสระ</p>
+</section>
+
+<!-- ══════════════ S5 · SELECTED RESEARCH ══════════════ -->
+<section class="section band band--warm" id="research" data-folio="V">
+  <header class="section__head reveal">
+    <p class="eyebrow">Research in Practice</p>
+    <div class="ornament-rule" aria-hidden="true"><i></i></div>
+    <h2>กรณีศึกษางานวิจัย — <span class="nw">ความลึกที่วัดได้</span></h2>
+    <p class="lead">งานวิจัยของเราไม่จบที่หน้าจอ — ทีมเดินทางพบทีมวิจัย CGS ที่ปักกิ่ง เข้าร่วมประชุมผู้ถือหุ้น Laopu Gold, Pop Mart และ Beyondsoft รวมถึง Channel Check หน้าร้านจริงของแบรนด์เป้าหมาย สามตัวอย่างต่อไปนี้แสดงวิธีคิดเบื้องหลังทุกสถานะในพอร์ต</p>
+    <p class="section__note-latin"><span lang="en">Illustrative research examples — not recommendations</span><button class="fn" data-fn="3" aria-label="อ่านหมายเหตุที่ 3">³</button></p>
+  </header>
+
+  <article class="case reveal">
+    <div class="case__text">
+      <span class="case__chip">HKEX · 6181</span>
+      <h3 class="case__name">Laopu Gold <small>เหล่าผู่ โกลด์ · China Luxury / Heritage Gold Jewellery</small></h3>
+      <p>ผู้บุกเบิกเครื่องประดับทองคำสไตล์ราชสำนักจีน (Ancient-Method Gold) ที่เปลี่ยนทองคำจากสินค้าโภคภัณฑ์ให้กลายเป็นแบรนด์หรูที่มี Pricing Power ในแบบที่อุตสาหกรรมนี้ไม่เคยเห็นมาก่อน ร้านค้าจำนวนจำกัดในทำเลระดับเดียวกับ Maison ตะวันตก สร้างยอดขายต่อสาขาและอัตรากำไรขั้นต้นที่ทิ้งห่างคู่แข่งดั้งเดิมหลายเท่าตัว<button class="fn" data-fn="3" aria-label="อ่านหมายเหตุที่ 3">³</button></p>
+      <dl class="case__angles">
+        <div><dt>Research Angle</dt><dd>Store Economics · Brand Equity · Margin Durability</dd></div>
+        <div><dt>Key Question</dt><dd>ความแข็งแกร่งของแบรนด์ทนทานต่อวัฏจักรราคาทองคำเพียงใด</dd></div>
+        <div><dt>Position Style</dt><dd>Core Holding · High Conviction</dd></div>
+      </dl>
+    </div>
+    <figure class="plate plate--gold">
+      <svg class="plate__bracket" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 1H1V24" fill="none"/></svg>
+      <svg class="plate__spark" viewBox="0 0 600 190" aria-hidden="true" data-spark="0.0,26.2 2.6,25.3 5.1,24.5 7.7,23.0 10.3,22.9 12.8,21.4 15.4,20.1 17.9,19.5 20.5,18.5 23.1,18.0 25.6,17.9 28.2,17.7 30.8,17.7 33.3,16.6 35.9,17.6 38.5,16.8 41.0,16.1 43.6,14.9 46.2,15.8 48.7,15.4 51.3,16.1 53.8,16.4 56.4,16.5 59.0,15.7 61.5,14.6 64.1,13.7 66.7,13.6 69.2,13.1 71.8,12.3 74.4,12.2 76.9,11.8 79.5,10.3 82.1,9.5 84.6,9.8 87.2,10.3 89.7,8.8 92.3,7.6 94.9,6.6 97.4,5.5 100.0,4.6"></svg>
+      <svg class="plate__wm" width="120" height="120" aria-hidden="true"><use href="#wm-ingot"/></svg>
+      <figcaption>Fig. 01 — Illustrative price path<button class="fn" data-fn="1" aria-label="อ่านหมายเหตุที่ 1">¹</button></figcaption>
+    </figure>
+  </article>
+
+  <article class="case case--flip reveal">
+    <div class="case__text">
+      <span class="case__chip">HKEX · 9992</span>
+      <h3 class="case__name">Pop Mart <small>China New Consumer · IP &amp; Collectible Toys</small></h3>
+      <p>เจ้าของแพลตฟอร์ม IP ของเล่นสะสมที่ใหญ่ที่สุดของจีน — จาก Molly ถึงปรากฏการณ์ระดับโลกอย่าง Labubu — ผสานพลังของ IP, เครือข่ายร้านค้าปลีก และเศรษฐศาสตร์ Blind Box ที่สร้างอัตรากำไรและความถี่ซื้อซ้ำสูง ทีมเราเข้าร่วมประชุมผู้ถือหุ้นและลงพื้นที่จริงถึงสวนสนุก Popland เพื่อประเมินความยั่งยืนของกระแส<button class="fn" data-fn="3" aria-label="อ่านหมายเหตุที่ 3">³</button></p>
+      <dl class="case__angles">
+        <div><dt>Research Angle</dt><dd>IP Pipeline · Global Store Rollout · Repeat Purchase</dd></div>
+        <div><dt>Key Question</dt><dd>IP จะยั่งยืนข้ามรุ่นแบบ Sanrio หรือเป็นเพียงกระแสชั่วคราว</dd></div>
+        <div><dt>Position Style</dt><dd>Growth Holding · Guochao Theme</dd></div>
+      </dl>
+    </div>
+    <figure class="plate plate--toy">
+      <svg class="plate__bracket" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 1H1V24" fill="none"/></svg>
+      <svg class="plate__spark" viewBox="0 0 600 190" aria-hidden="true" data-spark="0.0,25.6 2.6,25.2 5.1,24.9 7.7,23.5 10.3,23.3 12.8,20.6 15.4,20.0 17.9,20.4 20.5,19.1 23.1,18.9 25.6,17.0 28.2,15.4 30.8,15.4 33.3,14.8 35.9,13.9 38.5,12.3 41.0,12.5 43.6,13.2 46.2,14.1 48.7,14.5 51.3,15.4 53.8,15.5 56.4,16.0 59.0,15.5 61.5,14.0 64.1,12.9 66.7,13.4 69.2,13.6 71.8,13.2 74.4,12.8 76.9,11.6 79.5,11.0 82.1,9.4 84.6,9.2 87.2,8.8 89.7,8.2 92.3,7.8 94.9,8.2 97.4,7.3 100.0,6.1"></svg>
+      <svg class="plate__wm" width="120" height="120" aria-hidden="true"><use href="#wm-toy"/></svg>
+      <figcaption>Fig. 02 — Illustrative price path<button class="fn" data-fn="1" aria-label="อ่านหมายเหตุที่ 1">¹</button></figcaption>
+    </figure>
+  </article>
+
+  <article class="case reveal">
+    <div class="case__text">
+      <span class="case__chip">SSE STAR · 688008</span>
+      <h3 class="case__name">Montage Technology <small>Semiconductors · Memory Interface &amp; Interconnect</small></h3>
+      <p>หนึ่งในผู้เล่นเพียงไม่กี่รายของโลกที่ออกแบบชิป Memory Interface สำหรับ DDR5 ซึ่งเป็นคอขวดสำคัญของเซิร์ฟเวอร์ยุค AI — อุตสาหกรรมที่มีผู้แข่งขันเพียงสามรายทั่วโลกและกำแพงเทคโนโลยีสูงชัน การเปลี่ยนผ่านสู่ DDR5 และผลิตภัณฑ์กลุ่ม High-Bandwidth Interconnect เปิดพื้นที่การเติบโตหลายชั้น<button class="fn" data-fn="3" aria-label="อ่านหมายเหตุที่ 3">³</button></p>
+      <dl class="case__angles">
+        <div><dt>Research Angle</dt><dd>Oligopoly Structure · Content Growth per Server · Design Wins</dd></div>
+        <div><dt>Key Question</dt><dd>ส่วนแบ่งตลาดในเจเนอเรชันถัดไปของ JEDEC จะเป็นของใคร</dd></div>
+        <div><dt>Position Style</dt><dd>Thematic Holding · AI Infrastructure</dd></div>
+      </dl>
+    </div>
+    <figure class="plate plate--chip">
+      <svg class="plate__bracket" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 1H1V24" fill="none"/></svg>
+      <svg class="plate__spark" viewBox="0 0 600 190" aria-hidden="true" data-spark="0.0,25.7 2.6,26.2 5.1,27.0 7.7,27.3 10.3,27.7 12.8,27.8 15.4,28.0 17.9,28.5 20.5,29.2 23.1,28.4 25.6,29.3 28.2,28.4 30.8,27.8 33.3,27.7 35.9,26.8 38.5,26.1 41.0,25.3 43.6,24.8 46.2,23.9 48.7,24.0 51.3,24.2 53.8,24.7 56.4,24.2 59.0,24.8 61.5,22.4 64.1,22.4 66.7,22.0 69.2,20.9 71.8,21.4 74.4,21.1 76.9,20.0 79.5,19.6 82.1,18.0 84.6,15.9 87.2,15.7 89.7,14.6 92.3,14.3 94.9,12.7 97.4,12.6 100.0,11.6"></svg>
+      <svg class="plate__wm" width="120" height="120" aria-hidden="true"><use href="#wm-chip"/></svg>
+      <figcaption>Fig. 03 — Illustrative price path<button class="fn" data-fn="1" aria-label="อ่านหมายเหตุที่ 1">¹</button></figcaption>
+    </figure>
+  </article>
+
+  <p class="section__micro reveal">หลักทรัพย์ข้างต้นเป็นเพียงตัวอย่างประกอบการอธิบายกระบวนการวิจัย ณ ช่วงเวลาหนึ่งเท่านั้น ไม่ถือเป็นการชี้ชวน คำแนะนำ หรือการยืนยันว่าหลักทรัพย์ดังกล่าวอยู่ในพอร์ตปัจจุบัน</p>
+</section>
+
+<!-- ══════════════ S6 · PERFORMANCE ══════════════ -->
+<section class="section" id="performance" data-folio="VI">
+  <header class="section__head reveal">
+    <p class="eyebrow">Performance</p>
+    <div class="ornament-rule" aria-hidden="true"><i></i></div>
+    <h2>ผลการดำเนินงาน — <span class="nw">โปร่งใสในทุกตัวเลข</span></h2>
+    <p class="lead">ผลการดำเนินงานรายปีของกลยุทธ์เรือธง Smart Equity Tactical Asset Allocation ตั้งแต่จัดตั้งเมื่อกันยายน 2020 — เรารายงานอย่างตรงไปตรงมา ทั้งปีที่ดีและปีที่ยาก</p>
+  </header>
+
+  <figure class="plate plate--chart reveal" id="perfPlate">
+    <svg class="plate__bracket" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 1H1V24" fill="none"/></svg>
+    <div class="chart-head">
+      <p class="chart-title">ผลตอบแทนรายปี (NAV) <span>Smart Equity Tactical Asset Allocation · Sep 2020 – Apr 2026<button class="fn" data-fn="4" aria-label="อ่านหมายเหตุที่ 4">⁴</button></span></p>
+    </div>
+    <div class="chart-wrap" id="perfChart" role="img" aria-label="กราฟแท่งแสดงผลตอบแทนรายปีของกลยุทธ์ Smart Equity Tactical Asset Allocation ตั้งแต่กันยายน 2020 ถึงเมษายน 2026 — ปีที่ดีที่สุด +57.68% ในปี 2024 ปีที่ยากที่สุด −14.96% ในปี 2023 ผลตอบแทนสะสม +135.24%" aria-describedby="chartHint"></div>
+    <p class="visually-hidden" id="chartHint">กด Tab เข้ามาแล้วใช้ปุ่มลูกศรซ้าย–ขวาเพื่ออ่านค่ารายปี หรือเปิด "ดูข้อมูลเป็นตาราง" ด้านล่าง</p>
+    <div class="visually-hidden" id="chartLive" role="status"></div>
+    <div class="chart-tip" id="chartTip" hidden></div>
+    <div class="statrow">
+      <div class="stat"><span class="stat__label">ผลตอบแทนสะสม<button class="fn" data-fn="4" aria-label="อ่านหมายเหตุที่ 4">⁴</button></span><span class="stat__value">+<b data-count="135.2" data-dec="1">0.0</b>%</span><span class="stat__note">ตั้งแต่จัดตั้ง ก.ย. 2020 – เม.ย. 2026</span></div>
+      <div class="stat"><span class="stat__label">เฉลี่ยต่อปี (CAGR)<button class="fn" data-fn="4" aria-label="อ่านหมายเหตุที่ 4">⁴</button></span><span class="stat__value">+<b data-count="16.3" data-dec="1">0.0</b>%</span><span class="stat__note">โดยประมาณ · คำนวณจากผลตอบแทนสะสม</span></div>
+      <div class="stat"><span class="stat__label">ปีที่ดีที่สุด<button class="fn" data-fn="4" aria-label="อ่านหมายเหตุที่ 4">⁴</button></span><span class="stat__value">+<b data-count="57.7" data-dec="1">0.0</b>%</span><span class="stat__note">ปี 2024 · รองลงมา +56.0% ปี 2025</span></div>
+      <div class="stat"><span class="stat__label">เป้าหมายผลตอบแทน</span><span class="stat__value">7–10%</span><span class="stat__note">ต่อปี · Absolute Return</span></div>
+    </div>
+    <details class="chart-table">
+      <summary>ดูข้อมูลเป็นตาราง</summary>
+      <table>
+        <caption class="visually-hidden">ผลตอบแทนรายปีและการเติบโตของเงินลงทุน 100 บาท</caption>
+        <thead><tr><th scope="col">ปี</th><th scope="col">ผลตอบแทน (NAV)</th><th scope="col">เงิน 100 บาทเติบโตเป็น</th></tr></thead>
+        <tbody>
+          <tr><td>2020 (ก.ย.–ธ.ค.)<button class="fn" data-fn="2" aria-label="อ่านหมายเหตุที่ 2">²</button></td><td>+1.03%</td><td>101.0</td></tr>
+          <tr><td>2021</td><td>+42.92%</td><td>144.4</td></tr>
+          <tr><td>2022</td><td>−13.82%</td><td>124.4</td></tr>
+          <tr><td>2023</td><td>−14.96%</td><td>105.8</td></tr>
+          <tr><td>2024</td><td>+57.68%</td><td>166.9</td></tr>
+          <tr><td>2025</td><td>+56.04%</td><td>260.4</td></tr>
+          <tr><td>2026 (ถึง เม.ย.)<button class="fn" data-fn="2" aria-label="อ่านหมายเหตุที่ 2">²</button></td><td>−9.48%</td><td>235.7</td></tr>
+        </tbody>
+      </table>
+    </details>
+    <figcaption>Fig. 04 — Annual performance, Smart Equity Tactical Asset Allocation<button class="fn" data-fn="4" aria-label="อ่านหมายเหตุที่ 4">⁴</button></figcaption>
+  </figure>
+
+  <p class="section__micro reveal">ผลการดำเนินงานรายปีจากเอกสารนำเสนอของ CGSI Private Fund ข้อมูล ณ เมษายน 2026 — ผลการดำเนินงานในอดีตมิได้เป็นสิ่งยืนยันถึงผลการดำเนินงานในอนาคต การลงทุนมีความเสี่ยง ผู้ลงทุนควรทำความเข้าใจลักษณะสินค้า เงื่อนไขผลตอบแทน และความเสี่ยงก่อนตัดสินใจลงทุน — ขอรายงานผลการดำเนินงานฉบับเต็มได้ในการนัดหมายครั้งแรก</p>
+</section>
+
+<!-- ══════════════ S7 · WHY CGSI ══════════════ -->
+<section class="section band band--warm" id="why" data-folio="VII">
+  <header class="section__head reveal">
+    <p class="eyebrow">Why CGSI</p>
+    <div class="ornament-rule" aria-hidden="true"><i></i></div>
+    <h2>เหตุผลที่ครอบครัวผู้มั่งคั่งเลือกเรา</h2>
+  </header>
+  <div class="ledger">
+    <article class="ledger__cell reveal" style="--i:0">
+      <span class="ledger__no" aria-hidden="true">N°01</span>
+      <h3 class="ledger__title">เครือข่าย China Galaxy Securities<small>The China Galaxy Network</small></h3>
+      <p>CGS International เป็นบริษัทในเครือ China Galaxy Securities (CGS) หนึ่งในบริษัทหลักทรัพย์ใหญ่ที่สุด 3 อันดับแรกของจีน จดทะเบียนทั้งตลาดจีนและฮ่องกงโดยมีรัฐบาลจีนเป็นผู้ถือหุ้นใหญ่ — มูลค่าตลาดราว 5 แสนล้านบาท กำไรสุทธิกว่า 3 หมื่นล้านบาทต่อปี และเครือข่ายกว่า 20 ประเทศทั่วโลก<button class="fn" data-fn="6" aria-label="อ่านหมายเหตุที่ 6">⁶</button></p>
+    </article>
+    <article class="ledger__cell reveal" style="--i:1">
+      <span class="ledger__no" aria-hidden="true">N°02</span>
+      <h3 class="ledger__title">ลงทุนตรง ไม่ใช่ Feeder Fund<small>Direct Access, No Layered Fees</small></h3>
+      <p>กองทุนลงทุนโดยตรงในหุ้นจีนและต่างประเทศ ไม่ผ่านกองทุนอีกชั้นแบบ Feeder Fund ทำให้ไม่เสียค่าธรรมเนียมซ้ำซ้อนหลายต่อ และเข้าถึงข้อมูลกับ Insight จากทีมนักวิเคราะห์และกองทุนขนาดใหญ่ในประเทศจีนได้โดยตรง</p>
+    </article>
+    <article class="ledger__cell reveal" style="--i:2">
+      <span class="ledger__no" aria-hidden="true">N°03</span>
+      <h3 class="ledger__title">Focus Portfolio 10–20 บริษัท<small>Depth over Breadth</small></h3>
+      <p>ต่างจากกองทุนรวมส่วนใหญ่ที่กระจายถือหุ้นขนาดใหญ่จำนวนมาก เราเจาะลึกเพียง 10–20 บริษัทชั้นดีในอุตสาหกรรมที่มีแนวโน้มเติบโตสูง — ความเข้มข้นที่มาพร้อมงานวิจัยที่ลึกกว่าในทุกสถานะ และค่าธรรมเนียมส่วนสำคัญผูกกับผลลัพธ์ที่ท่านได้รับจริง</p>
+    </article>
+    <article class="ledger__cell reveal" style="--i:3">
+      <span class="ledger__no" aria-hidden="true">N°04</span>
+      <h3 class="ledger__title">วางแผนภาษีเงินลงทุนต่างประเทศ<small>Tax-Aware Structure</small></h3>
+      <p>กองทุนส่วนบุคคลช่วยเตรียมจัดการภาษีเงินลงทุนต่างประเทศ ให้ท่านได้ประโยชน์สูงสุดเมื่อนำกำไรกลับประเทศไทย — โดยทรัพย์สินเก็บรักษาแยกไว้ที่ผู้รับฝากทรัพย์สินอิสระ ภายใต้การกำกับดูแลของสำนักงาน ก.ล.ต. ตลอดเวลา</p>
+    </article>
+  </div>
+  <div class="statstrip reveal" aria-label="ตัวเลขสำคัญ">
+    <div class="statstrip__item"><span class="statstrip__value"><b data-count="25" data-dec="0">0</b>+ ปี<button class="fn" data-fn="6" aria-label="อ่านหมายเหตุที่ 6">⁶</button></span><span class="statstrip__label">ประสบการณ์รวมของทีมผู้จัดการกองทุน</span></div>
+    <i class="statstrip__diamond" aria-hidden="true"></i>
+    <div class="statstrip__item"><span class="statstrip__value"><b data-count="20" data-dec="0">0</b>+ ประเทศ<button class="fn" data-fn="6" aria-label="อ่านหมายเหตุที่ 6">⁶</button></span><span class="statstrip__label">เครือข่ายสาขาของ CGS ทั่วโลก</span></div>
+    <i class="statstrip__diamond" aria-hidden="true"></i>
+    <div class="statstrip__item"><span class="statstrip__value">10–20</span><span class="statstrip__label">บริษัทที่คัดสรรอย่างเข้มข้นในพอร์ต</span></div>
+  </div>
+</section>
+
+<!-- ══════════════ S8 · THE TEAM ══════════════ -->
+<section class="section" id="team" data-folio="VIII">
+  <header class="section__head reveal">
+    <p class="eyebrow">The Team</p>
+    <div class="ornament-rule" aria-hidden="true"><i></i></div>
+    <h2>ทีมงาน — <span class="nw">ประสบการณ์ที่ผ่านมาแล้วทุกวัฏจักร</span></h2>
+  </header>
+  <div class="letter reveal">
+    <p class="letter__opener" lang="en">“With over 15 years of expertise and dedication to excellence, we craft a system that not only reduces risk, but has the potential to provide high expected returns.”</p>
+    <p>เบื้องหลังทุกพอร์ตคือทีมขนาดกะทัดรัดที่เชี่ยวชาญการวิเคราะห์เจาะลึกสไตล์ Bottom-up — ประสบการณ์บริหารกองทุนรวมกันกว่า 25 ปี ทั้งฝั่งสถาบันและ Private Wealth ผ่านมาแล้วทุกวัฏจักรของตลาด รวมถึงช่วงเวลาที่ยากที่สุด ซึ่งเป็นบทเรียนที่ตำราไม่มีสอน</p>
+    <p>ความใส่ใจในรายละเอียดและความมุ่งมั่นในคุณภาพ ทำให้ทุกองค์ประกอบของระบบการลงทุนถูกขัดเกลาอย่างประณีต — เพื่อผลลัพธ์ที่เปลี่ยนแปลงได้จริงสำหรับเป้าหมายของท่าน</p>
+    <svg class="letter__signature" viewBox="0 0 200 44" aria-hidden="true">
+      <path d="M12 32 C 22 8, 34 6, 38 18 C 41 27, 33 36, 28 32 C 24 29, 34 18, 48 20 C 58 21.5, 62 30, 72 26 C 80 23, 82 14, 90 16 C 99 18, 100 30, 112 26 C 122 22.5, 128 12, 140 16 C 150 19, 152 28, 166 24 C 174 21.5, 180 18, 188 20" fill="none" stroke="#1A2744" stroke-width="1.1" stroke-linecap="round"/>
+    </svg>
+    <p class="letter__role">Head of Private Fund Management</p>
+  </div>
+  <div class="medallions medallions--two">
+    <article class="medallion reveal" style="--i:0">
+      <div class="medallion__frame" aria-hidden="true"><span>PN</span></div>
+      <h3 class="medallion__name">Pisithr Niyomtammakij</h3>
+      <p class="medallion__role">Head of Private Fund Management</p>
+      <p class="medallion__bio">ประสบการณ์บริหารกองทุนมากกว่า 15 ปี — Head of Private Fund ที่ SCB Securities, ผู้จัดการกองทุนส่วนบุคคลที่ Merchant Partner Asset Management และนักวิเคราะห์หลักทรัพย์ที่ Tonson Capital — ปริญญาตรีเศรษฐศาสตร์ระหว่างประเทศ จุฬาลงกรณ์มหาวิทยาลัย</p>
+    </article>
+    <article class="medallion reveal" style="--i:1">
+      <div class="medallion__frame" aria-hidden="true"><span>RN</span></div>
+      <h3 class="medallion__name">Rakpatai Narongsak, CFA, CFP<sup>®</sup></h3>
+      <p class="medallion__role">Fund Manager</p>
+      <p class="medallion__bio">ประสบการณ์บริหารกองทุนมากกว่า 10 ปี — ผู้จัดการกองทุนส่วนบุคคลที่ Phillip Capital — ปริญญาโทบริหารธุรกิจ สาขาการเงิน สถาบันบัณฑิตพัฒนบริหารศาสตร์ และปริญญาตรีวิศวกรรมศาสตร์ สาขาอุตสาหการ มหาวิทยาลัยเกษตรศาสตร์</p>
+    </article>
+  </div>
+  <p class="section__micro reveal">พบทีมผู้จัดการกองทุนตัวจริงได้ในการนัดหมายครั้งแรก — เราไม่มีทีมขาย</p>
+</section>
+
+<!-- ══════════════ S9 · THE JOURNAL — INSIGHTS ══════════════ -->
+<section class="section band band--warm" id="insights" data-folio="IX">
+  <header class="section__head reveal">
+    <p class="eyebrow">The Journal</p>
+    <div class="ornament-rule" aria-hidden="true"><i></i></div>
+    <h2>บทความและมุมมองการลงทุน</h2>
+    <p class="lead">มุมมองจากทีมผู้จัดการกองทุน — นโยบาย มูลค่า และกลยุทธ์ กลั่นจากงานวิจัยชุดเดียวกับที่เราใช้บริหารพอร์ตจริง</p>
+  </header>
+  <div class="insights-grid" id="insightsGrid"></div>
+  <div class="insights-cta reveal">
+    <a class="btn-cert" href="insights.html">เปิดอ่าน The Journal ทั้งหมด</a>
+  </div>
+</section>
+
+<!-- ══════════════ S10 · WATCH & LISTEN — MEDIA ══════════════ -->
+<section class="section" id="media" data-folio="X">
+  <header class="section__head reveal">
+    <p class="eyebrow">Watch &amp; Listen</p>
+    <div class="ornament-rule" aria-hidden="true"><i></i></div>
+    <h2>วีดีโอ &amp; พอดแคสต์</h2>
+    <p class="lead">Video Sessions เจาะลึกธีมการลงทุน และ Podcast ฟังได้ทุกที่ — จากทีมผู้จัดการกองทุน</p>
+  </header>
+  <div class="insights-grid" id="mediaGrid"></div>
+  <div class="insights-cta reveal">
+    <a class="btn-cert" href="media.html">เปิดชมทั้งหมด</a>
+  </div>
+</section>
+
+<!-- ══════════════ S11 · CONDITIONS OF ENGAGEMENT ══════════════ -->
+<section class="section band band--recessed" id="begin" data-folio="XI">
+  <header class="section__head reveal">
+    <p class="eyebrow">Begin Your Journey</p>
+    <div class="ornament-rule" aria-hidden="true"><i></i></div>
+    <h2>การเริ่มต้นลงทุน — <span class="nw">เรียบง่าย ชัดเจน ไม่เร่งรัด</span></h2>
+    <p class="lead">การตัดสินใจมอบหมายการบริหารความมั่งคั่งคือการตัดสินใจครั้งสำคัญ เราจึงออกแบบการเริ่มต้นให้ท่านมีข้อมูลครบถ้วนในทุกขั้น และไม่มีแรงกดดันใด ๆ ตลอดกระบวนการ</p>
+  </header>
+  <div class="engage">
+    <div class="tariff reveal">
+      <svg class="cert__bracket" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 1H1V24" fill="none"/></svg>
+      <p class="tariff__head">Conditions of Engagement</p>
+      <dl class="tariff__rows">
+        <div><dt>เงินลงทุนขั้นต่ำ <small>Minimum Investment</small></dt><dd class="ph">30,000,000 THB<button class="fn" data-fn="5" aria-label="อ่านหมายเหตุที่ 5">⁵</button></dd></div>
+        <div><dt>ค่าธรรมเนียมแรกเข้า <small>Front-End Fee</small></dt><dd>1% เก็บครั้งเดียว<button class="fn" data-fn="5" aria-label="อ่านหมายเหตุที่ 5">⁵</button></dd></div>
+        <div><dt>ค่าธรรมเนียมการจัดการ <small>Management Fee</small></dt><dd>1.5% ต่อปี<button class="fn" data-fn="5" aria-label="อ่านหมายเหตุที่ 5">⁵</button></dd></div>
+        <div><dt>ค่าธรรมเนียมผลการดำเนินงาน <small>Performance Fee</small></dt><dd>10% เหนือ High Watermark<button class="fn" data-fn="5" aria-label="อ่านหมายเหตุที่ 5">⁵</button></dd></div>
+        <div><dt>ผู้รับฝากทรัพย์สิน <small>Custodian Fee</small></dt><dd>0.03% ต่อปี<button class="fn" data-fn="5" aria-label="อ่านหมายเหตุที่ 5">⁵</button></dd></div>
+        <div><dt>การคำนวณ NAV / การไถ่ถอน <small>NAV &amp; Redemption</small></dt><dd>รายวัน · แจ้งล่วงหน้า 30 วัน</dd></div>
+      </dl>
+      <p class="tariff__foot">อัตราค่าธรรมเนียมยังไม่รวม VAT 7% — ไม่มี Lock-up Period และไม่มีนโยบายจ่ายเงินปันผล ค่าธรรมเนียมผลการดำเนินงานคำนวณ ณ สิ้นปีเทียบกับ High Watermark ทุกรายการปรากฏในรายงานของท่าน</p>
+    </div>
+    <ol class="onboard reveal">
+      <li class="onboard__step" style="--i:0">
+        <span class="onboard__num" aria-hidden="true">01</span>
+        <div><h3>การสนทนาครั้งแรก <small>Initial Consultation</small></h3>
+        <p>ทำความรู้จักเป้าหมายและข้อกังวลของท่าน — ไม่มีค่าใช้จ่าย ไม่มีข้อผูกพัน</p></div>
+      </li>
+      <li class="onboard__step" style="--i:1">
+        <span class="onboard__num" aria-hidden="true">02</span>
+        <div><h3>การประเมินความเหมาะสม <small>Suitability &amp; IPS</small></h3>
+        <p>จัดทำ Risk Profile และร่าง Investment Policy Statement ร่วมกัน</p></div>
+      </li>
+      <li class="onboard__step" style="--i:2">
+        <span class="onboard__num" aria-hidden="true">03</span>
+        <div><h3>เอกสารและการเปิดบัญชี <small>Account Opening</small></h3>
+        <p>ลงนามสัญญา เปิดบัญชีผู้รับฝากทรัพย์สินในชื่อของท่าน — ทีมเราดูแลเอกสารทั้งหมด</p></div>
+      </li>
+      <li class="onboard__step" style="--i:3">
+        <span class="onboard__num" aria-hidden="true">04</span>
+        <div><h3>เริ่มบริหารพอร์ต <small>Inception</small></h3>
+        <p>ทยอยสร้างสถานะตามแผนที่ตกลง พร้อมรายงานฉบับแรกภายในสิ้นเดือนแรก</p></div>
+      </li>
+    </ol>
+  </div>
+  <div class="engage__cta reveal">
+    <a class="btn-cert" href="#contact">เริ่มต้นด้วยการสนทนา</a>
+    <p class="section__micro">โดยทั่วไปกระบวนการทั้งหมดใช้เวลาประมาณ 2–3 สัปดาห์ นับจากการสนทนาครั้งแรกถึงวันเริ่มลงทุน</p>
+  </div>
+</section>
+
+<!-- ══════════════ S12 · CONTACT + DISCLAIMER (navy finale) ══════════════ -->
+<section class="finale" id="contact" data-folio="XII">
+  <div class="finale__inner">
+    <svg class="finale__crest" width="60" height="60" aria-hidden="true"><use href="#crest"/></svg>
+    <div class="finale__cols">
+      <div class="finale__info reveal">
+        <p class="eyebrow eyebrow--inv">Correspondence</p>
+        <h2 class="finale__h2">เริ่มบทสนทนา — <span class="nw">ทุกถ้อยคำเป็นความลับ</span></h2>
+        <p class="finale__lede">ไม่ว่าท่านกำลังพิจารณาโครงสร้างการลงทุนใหม่ หรือเพียงต้องการมุมมองที่สองต่อพอร์ตปัจจุบัน เรายินดีรับฟังโดยไม่มีข้อผูกพันใด ๆ</p>
+        <address class="finale__address">
+          <p class="finale__contact-line"><span>Telephone</span><a href="tel:+6627619144">02-761-9144</a></p>
+          <p class="finale__contact-line"><span>Email</span><a href="mailto:PF.TH@CGSI.com">PF.TH@CGSI.com</a></p>
+          <p class="finale__contact-line"><span>LINE Official</span><a href="https://line.me/R/ti/p/@cgsithpf" rel="noopener">@cgsithpf</a></p>
+          <p class="finale__contact-line"><span>Website</span><a href="https://www.cgsi.co.th/th/privatefund" rel="noopener">cgsi.co.th/th/privatefund</a></p>
+        </address>
+      </div>
+      <form class="finale__form reveal" id="contactForm" novalidate>
+        <svg class="finale__form-bracket" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 1H1V24" fill="none"/></svg>
+        <div class="field"><input type="text" id="f-name" name="name" required autocomplete="name" placeholder=" "><label for="f-name">ชื่อ–นามสกุล · Full Name</label></div>
+        <div class="field"><input type="email" id="f-email" name="email" required autocomplete="email" placeholder=" "><label for="f-email">อีเมล · Email</label></div>
+        <div class="field"><input type="tel" id="f-phone" name="phone" autocomplete="tel" placeholder=" "><label for="f-phone">โทรศัพท์ · Phone (ไม่บังคับ)</label></div>
+        <div class="field field--select">
+          <select id="f-size" name="size">
+            <option value="" selected>โปรดเลือก (ไม่บังคับ)</option>
+            <option value="lt30">น้อยกว่า 30 ล้านบาท</option>
+            <option value="30-100">30–100 ล้านบาท</option>
+            <option value="gt100">มากกว่า 100 ล้านบาท</option>
+          </select>
+          <label for="f-size" class="is-fixed">เงินลงทุนโดยประมาณ · Indicative Size</label>
+        </div>
+        <div class="field"><textarea id="f-msg" name="message" rows="3" placeholder=" "></textarea><label for="f-msg">เรื่องที่ต้องการปรึกษา · Message</label></div>
+        <button class="finale__submit" type="submit">Submit Enquiry</button>
+        <p class="finale__form-micro">ข้อมูลของท่านถูกใช้เพื่อการติดต่อกลับเท่านั้น ตามนโยบายความเป็นส่วนตัวและ พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล (PDPA) — เราจะติดต่อกลับภายใน 1 วันทำการ</p>
+        <p class="finale__form-done" id="formDone" role="status" hidden>ขอบคุณสำหรับข้อความของท่าน — นี่คือเว็บไซต์ตัวอย่างงานออกแบบ แบบฟอร์มจึงยังไม่ได้เชื่อมต่อระบบจริง</p>
+      </form>
+    </div>
+
+    <div class="disclaimer reveal">
+      <p class="disclaimer__head"><span class="th">คำเตือนและข้อจำกัดความรับผิดชอบ</span> · <span lang="en">Important Disclaimer</span></p>
+      <div class="disclaimer__cols">
+        <p><strong>การลงทุนมีความเสี่ยง</strong> ผู้ลงทุนควรทำความเข้าใจลักษณะสินค้า เงื่อนไขผลตอบแทน และความเสี่ยงก่อนตัดสินใจลงทุน ผลการดำเนินงานในอดีตมิได้เป็นสิ่งยืนยันถึงผลการดำเนินงานในอนาคต การให้บริการกองทุนส่วนบุคคล (Private Fund) เป็นการบริหารเงินลงทุนตามที่ได้รับมอบหมายจากผู้ลงทุนเป็นรายบุคคล มูลค่าเงินลงทุนอาจเพิ่มขึ้นหรือลดลงได้ตามสภาวะตลาด ผู้ลงทุนอาจได้รับเงินคืนต่ำกว่าเงินลงทุนเริ่มแรก ทรัพย์สินภายใต้การบริหารกองทุนส่วนบุคคลมิใช่เงินฝาก และไม่ได้รับความคุ้มครองจากสถาบันคุ้มครองเงินฝาก การลงทุนในหลักทรัพย์ต่างประเทศมีความเสี่ยงด้านอัตราแลกเปลี่ยน ความเสี่ยงด้านสภาพคล่อง และความเสี่ยงเฉพาะของแต่ละประเทศ ผู้ลงทุนควรศึกษาข้อมูลในสัญญารับจัดการกองทุนส่วนบุคคลและเอกสารเปิดเผยข้อมูลความเสี่ยงอย่างรอบคอบ และควรขอคำแนะนำเพิ่มเติมจากผู้ประกอบวิชาชีพก่อนตัดสินใจลงทุน การประกอบธุรกิจจัดการกองทุนส่วนบุคคลต้องได้รับใบอนุญาตและอยู่ภายใต้การกำกับดูแลของสำนักงาน ก.ล.ต. — ตรวจสอบรายชื่อผู้ได้รับใบอนุญาตได้ที่ www.sec.or.th</p>
+        <ol class="disclaimer__notes" role="list">
+          <li id="fn-1" tabindex="-1"><span>¹</span> เส้นทางราคาและคำอธิบายประกอบภาพเป็นภาพเชิงแนวคิด (Conceptual Illustration) เพื่อการออกแบบเท่านั้น มิได้อ้างอิงข้อมูลราคาจริง</li>
+          <li id="fn-2" tabindex="-1"><span>²</span> ผลตอบแทนปี 2020 นับจากจัดตั้งกลยุทธ์ในเดือนกันยายน 2020 (ก.ย.–ธ.ค.) และปี 2026 นับตั้งแต่ต้นปีถึงเดือนเมษายน 2026 (YTD)</li>
+          <li id="fn-3" tabindex="-1"><span>³</span> การอ้างอิงถึง Laopu Gold (6181 HK), Pop Mart (9992 HK) และ Montage Technology (688008 CH) เป็นเพียงตัวอย่างงานวิจัย (Illustrative Research Examples) เพื่อประกอบการอธิบายกระบวนการ มิใช่คำแนะนำให้ซื้อ ขาย หรือถือครอง และมิได้ยืนยันว่าอยู่ในพอร์ตการลงทุนใด ๆ</li>
+          <li id="fn-4" tabindex="-1"><span>⁴</span> ผลการดำเนินงานรายปีคำนวณจาก NAV อ้างอิงเอกสารนำเสนอ Smart Equity Tactical Asset Allocation ของ CGSI Private Fund ข้อมูล ณ เมษายน 2026 — ผลตอบแทนสะสมและค่าเฉลี่ยต่อปี (CAGR) คำนวณจากผลตอบแทนรายปีดังกล่าว ผลการดำเนินงานในอดีตมิได้เป็นสิ่งยืนยันถึงผลการดำเนินงานในอนาคต และเป้าหมายผลตอบแทนมิใช่การรับประกันผลตอบแทน</li>
+          <li id="fn-5" tabindex="-1"><span>⁵</span> เงินลงทุนขั้นต่ำเป็นตัวเลขตัวอย่าง โปรดสอบถามเงื่อนไขปัจจุบัน — อัตราค่าธรรมเนียมอ้างอิงเอกสารนำเสนอ (2026) ยังไม่รวม VAT 7% เงื่อนไขจริงเป็นไปตามที่ตกลงในสัญญาแต่ละราย</li>
+          <li id="fn-6" tabindex="-1"><span>⁶</span> ข้อมูลเครือ China Galaxy Securities เครือข่ายสาขา และประสบการณ์ทีมงาน อ้างอิงเอกสารนำเสนอของ CGSI Private Fund (2026)</li>
+        </ol>
+      </div>
+      <p class="disclaimer__demo"><strong>ข้อความสำคัญ:</strong> เว็บไซต์นี้เป็นชิ้นงานออกแบบเพื่อการนำเสนอ (Design Prototype) ยังมิใช่เว็บไซต์ทางการที่เผยแพร่โดยบริษัทหลักทรัพย์ ซีจีเอส อินเตอร์เนชั่นแนล (ประเทศไทย) จำกัด (มหาชน) — เนื้อหาอ้างอิงเอกสารนำเสนอ Smart Equity Tactical Asset Allocation (2026) และต้องผ่านการตรวจสอบด้าน Compliance ก่อนการเผยแพร่จริง เนื้อหาทั้งหมดมิได้เป็นการเสนอขายหรือชี้ชวนให้ลงทุนในหลักทรัพย์ใด ๆ</p>
+    </div>
+
+    <footer class="footer">
+      <div class="footer__shimmer shimmer-line" aria-hidden="true"></div>
+      <div class="footer__row">
+        <span>© 2026 CGSI Private Fund <em>(Demonstration design)</em></span>
+        <span class="footer__est">Est. MMXXVI</span>
+        <span>Bangkok · <span class="th">กรุงเทพมหานคร</span></span>
+      </div>
+    </footer>
+  </div>
+</section>
+
+</main>
+
+<div class="fn-tip" id="fnTip" role="tooltip" hidden></div>
+
+<script src="assets/js/articles.js"></script>
+<script src="assets/js/media.js"></script>
+<script src="assets/js/journal.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
