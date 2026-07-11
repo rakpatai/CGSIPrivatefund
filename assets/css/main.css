@@ -500,7 +500,7 @@ h1, h2, h3 { text-shadow: 0 1px 0 rgba(252,250,246,0.45); }
   transition: color 0.2s;
 }
 .pillar:hover .pillar__numeral { color: var(--gold-bright); }
-.pillar__icon { margin-top: 26px; color: var(--ink); }
+.pillar__icon { display: block; margin: 26px auto 0; color: var(--ink); }
 .pillar__title {
   margin-top: 22px;
   font-family: var(--font-thai-display);
