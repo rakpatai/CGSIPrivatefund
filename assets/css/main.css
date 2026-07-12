@@ -2258,6 +2258,41 @@ h1, h2, h3 { text-shadow: 0 1px 0 rgba(252,250,246,0.45); }
 .gate__micro a:hover { background-size: 100% 1px; }
 .gate__demo { margin-top: 20px; font-size: 0.6875rem; font-weight: 300; color: rgba(237,231,219,0.4); }
 
+/* ปุ่ม LINE Official (มุมขวาของ nav + ส่วนติดต่อ) */
+.nav__line {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-caps);
+  font-weight: 500;
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border: 1px solid var(--hairline);
+  padding: 7px 14px;
+  transition: background-color 0.3s var(--ease-quiet), color 0.3s var(--ease-quiet), border-color 0.3s;
+}
+.nav__line svg { flex-shrink: 0; }
+.nav__line:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.btn-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+.btn-line svg { flex-shrink: 0; }
+.finale__journal-contact a {
+  color: inherit;
+  background-image: linear-gradient(var(--gold), var(--gold));
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  background-size: 0% 1px;
+  padding-bottom: 2px;
+  transition: background-size 0.4s var(--ease-quiet);
+}
+.finale__journal-contact a:hover { background-size: 100% 1px; }
+
 /* nav link ไป exclusive (มุมขวา ข้าง TH|EN) */
 .nav__member {
   font-family: var(--font-caps);
@@ -2398,6 +2433,7 @@ h1, h2, h3 { text-shadow: 0 1px 0 rgba(252,250,246,0.45); }
 @media (max-width: 900px) {
   .nav { padding: 14px 20px; }
   .nav__links { display: none; }
+  .nav__line { display: none; } /* จอเล็กใช้รายการในเมนูมือถือแทน */
   .nav__burger { display: flex; }
   .pillars { grid-template-columns: 1fr; }
   .pillar + .pillar { border-left: none; border-top: 1px solid var(--hairline); }
