@@ -1,19 +1,25 @@
 /* ============================================================
-   gate.js — ประตูเนื้อหา Exclusive (DEMO เท่านั้น)
+   gate.js — ประตูเนื้อหา Exclusive (รหัสเดียว เปลี่ยนทุกไตรมาส)
    ------------------------------------------------------------
-   ⚠️ นี่คือการกันแบบฝั่ง client เพื่อเดโม UX — เนื้อหายังอยู่ใน
-   repository และ view-source ได้ การป้องกันจริงต้องทำที่ระดับ
-   hosting เช่น Cloudflare Access / Netlify Identity ครอบโฟลเดอร์
-   /exclusive/ (แบบเดียวกับเว็บ rakpatai) ก่อนใช้งานจริง
+   ระดับการป้องกัน: กันฝั่ง client — เหมาะกับเนื้อหาระดับ
+   model portfolio / จดหมายรวม ที่ไม่มีข้อมูลลูกค้ารายคน
+   (คนทั่วไปผ่านไม่ได้ แต่ผู้ชำนาญเปิด source ได้ — ยอมรับได้ตามนโยบาย)
+   หากอนาคตจะเก็บข้อมูลจริงรายคน ค่อยย้ายไปกันที่ระดับ hosting
 
-   รหัสเดโม: ดูใน README.md (เก็บเป็น SHA-256 ไม่ใช่ plaintext)
-   ปลดล็อกแล้วจำไว้ใน sessionStorage — ปิดแท็บ = ล็อกใหม่
+   🔑 เปลี่ยนรหัส (ทุก 3 เดือน):  node new-passcode.mjs "รหัสใหม่"
+   — สคริปต์อัปเดต HASH ด้านล่างให้เอง เครื่องลูกค้าที่จำรหัสเก่าไว้
+   จะถูกถามรหัสใหม่อัตโนมัติ (เพราะ hash ที่จำไว้ไม่ตรงแล้ว)
+
+   ปลดล็อกแล้วจำใน localStorage จนกว่ารหัสจะถูกเปลี่ยน
    ============================================================ */
 (function () {
   "use strict";
   var HASH = "a6f27c38b0aaf5a758ffb2d5360067076ed590aa731aedd27caefdf13851c913";
-  var KEY = "cgsi-exclusive-ok";
-  if (sessionStorage.getItem(KEY) === "1") return;
+  var KEY = "cgsi-exclusive-key";
+  /* จำเฉพาะเมื่อค่าที่เก็บไว้ตรงกับ HASH ปัจจุบัน — เปลี่ยนรหัส = ล็อกใหม่ทุกเครื่อง */
+  try {
+    if (localStorage.getItem(KEY) === HASH) return;
+  } catch (e) { /* private mode — ถามรหัสทุกครั้ง */ }
 
   document.documentElement.classList.add("is-gated");
 
@@ -33,7 +39,7 @@
       '</form>' +
       '<p class="gate__err" id="gateErr" hidden>รหัสไม่ถูกต้อง — โปรดลองอีกครั้ง หรือติดต่อ 02-761-9144</p>' +
       '<p class="gate__micro">ยังไม่เป็นลูกค้า? <a href="../index.html#contact">นัดหมายสนทนากับเรา</a></p>' +
-      '<p class="gate__demo">หน้านี้เป็นการกันแบบเดโม — ระบบจริงจะป้องกันที่ระดับเซิร์ฟเวอร์</p>' +
+      '<p class="gate__demo">รหัสเปลี่ยนทุกไตรมาส — สอบถามได้จากผู้ดูแลความสัมพันธ์ของท่าน</p>' +
       "</div>";
     document.body.appendChild(ov);
 
@@ -54,7 +60,7 @@
           return b.toString(16).padStart(2, "0");
         }).join("");
         if (hex === HASH) {
-          sessionStorage.setItem(KEY, "1");
+          try { localStorage.setItem(KEY, hex); } catch (e) {}
           document.documentElement.classList.remove("is-gated");
           ov.remove();
         } else {
