@@ -15,18 +15,29 @@
     return d.getDate() + " " + THAI_MONTHS[d.getMonth()] + " " + (d.getFullYear() + 543);
   }
 
+  /* helper: member item → หน้าอยู่ใน exclusive/ */
+  const articleHref = (a, base) => base + (a.tier === "member" ? "exclusive/" : "articles/") + a.slug + ".html";
+  const mediaHref = (m, base) => base + (m.tier === "member" ? "exclusive/" : "media/") + m.slug + ".html";
+  function lockBadge() {
+    const lock = doc.createElement("span");
+    lock.className = "card-lock";
+    lock.textContent = "🔒 Exclusive";
+    return lock;
+  }
+
   /* ── Article cards (มีรูป cover แบบ rakpatai) ─────────────────── */
   function card(a, i, base) {
     const el = doc.createElement("a");
     el.className = "insight-card reveal";
     el.style.setProperty("--i", String(i % 3));
-    el.href = base + "articles/" + a.slug + ".html";
+    el.href = articleHref(a, base);
     if (a.cover) {
       const cover = doc.createElement("span");
       cover.className = "insight-card__cover";
       cover.style.backgroundImage = "url('" + a.cover + "')";
       el.appendChild(cover);
     }
+    if (a.tier === "member") el.appendChild(lockBadge());
     const body = doc.createElement("span");
     body.className = "insight-card__body";
     const no = doc.createElement("span");
@@ -68,7 +79,8 @@
       const a = A[0];
       const el = doc.createElement("a");
       el.className = "feature-card reveal";
-      el.href = "articles/" + a.slug + ".html";
+      el.href = articleHref(a, "");
+      if (a.tier === "member") el.appendChild(lockBadge());
       const text = doc.createElement("span");
       const label = doc.createElement("span");
       label.className = "feature-card__label";
@@ -112,6 +124,12 @@
       A.filter((a) => a.slug !== cur).slice(0, 3).forEach((a, i) => moreHost.appendChild(card(a, i, "../")));
     }
 
+    /* Exclusive hub — บทความเฉพาะลูกค้า */
+    const exArticles = doc.getElementById("exclusiveArticles");
+    if (exArticles) {
+      A.filter((a) => a.tier === "member").forEach((a, i) => exArticles.appendChild(card(a, i, "../")));
+    }
+
     /* Article pages — prev/next (rakpatai post-nav) */
     const navHost = doc.getElementById("postNav");
     if (navHost) {
@@ -121,7 +139,7 @@
         const mk = (a, cls, labelText) => {
           const link = doc.createElement("a");
           link.className = cls;
-          link.href = a.slug + ".html";
+          link.href = articleHref(a, "../");
           const lb = doc.createElement("div");
           lb.className = "nav-label";
           lb.textContent = labelText;
@@ -168,7 +186,7 @@
     el.className = "media-card reveal";
     el.style.setProperty("--i", String(i % 3));
     el.dataset.type = m.type;
-    el.href = base + "media/" + m.slug + ".html";
+    el.href = mediaHref(m, base);
     const cover = doc.createElement("span");
     cover.className = "media-card__cover";
     cover.style.backgroundImage = "url('" + m.cover + "')";
@@ -176,6 +194,7 @@
     badge.className = "media-card__badge" + (isPod ? " media-card__badge--pod" : "");
     badge.textContent = isPod ? "◉ Podcast" : "▶ Video";
     cover.appendChild(badge);
+    if (m.tier === "member") cover.appendChild(lockBadge());
     if (m.duration && m.duration !== "—") {
       const dur = doc.createElement("span");
       dur.className = "media-card__duration";
@@ -256,6 +275,12 @@
     if (moreMedia) {
       const cur = doc.body.dataset.slug || "";
       M.filter((m) => m.slug !== cur).slice(0, 3).forEach((m, i) => moreMedia.appendChild(mediaCard(m, i, "../")));
+    }
+
+    /* Exclusive hub — วิดีโอ/พอดแคสต์เฉพาะลูกค้า */
+    const exMedia = doc.getElementById("exclusiveMedia");
+    if (exMedia) {
+      M.filter((m) => m.tier === "member").forEach((m, i) => exMedia.appendChild(mediaCard(m, i, "../")));
     }
 
     /* Click-to-play — loads the embed only when pressed */

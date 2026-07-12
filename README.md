@@ -16,9 +16,12 @@ media.html            — "Watch & Listen" หน้ารวมวีดีโ�
 articles/             — บทความไฟล์ละเรื่อง (+ _template.html สำหรับก็อป)
 media/                — หน้าวิดีโอ/พอดแคสต์ไฟล์ละเรื่อง แบบ click-to-play (+ _template.html)
 assets/css/main.css   — design system ทั้งหมด (tokens, typography, motion, responsive)
-assets/js/articles.js — ★ สารบัญบทความ
-assets/js/media.js    — ★ สารบัญวีดีโอ & พอดแคสต์
-assets/js/journal.js  — ตัว render การ์ด (หน้าแรก/หน้ารวม/แถบอ่านต่อ/filter/player)
+exclusive/            — 🔒 เนื้อหาเฉพาะลูกค้า: index.html (hub), dashboard.html,
+                        จดหมายถึงลูกค้า และวิดีโอ member (ทุกหน้ามี gate + noindex)
+assets/js/articles.js — ★ สารบัญบทความ (tier: "member" = เฉพาะลูกค้า)
+assets/js/media.js    — ★ สารบัญวีดีโอ & พอดแคสต์ (tier: "member" = เฉพาะลูกค้า)
+assets/js/journal.js  — ตัว render การ์ด (หน้าแรก/หน้ารวม/แถบอ่านต่อ/filter/player/exclusive hub)
+assets/js/gate.js     — ประตูใส่รหัสของโซน exclusive (เดโมเท่านั้น — อ่านหัวข้อ Exclusive)
 assets/js/main.js     — rosette, bar chart + tooltip, count-ups, reveals, footnotes
 new-post.mjs          — ★ สคริปต์สร้างโครงบทความใหม่
 new-video.mjs         — ★ สคริปต์เพิ่มวิดีโอ YouTube (ดึงชื่อ+thumbnail อัตโนมัติ)
@@ -56,6 +59,19 @@ node new-video.mjs <youtube-url> [slug]
 
 ทุกอย่างอัปเดตอัตโนมัติ 3 จุด: **หน้าแรก** (3 รายการล่าสุด), **หน้ารวม**, **แถบอ่าน/ชมต่อ**
 — player โหลดเมื่อผู้ใช้กดเล่นเท่านั้น (click-to-play) · ดูรายละเอียดใน `CONTENT-FORMAT.md`
+
+## 🔒 โซน Exclusive (เนื้อหาเฉพาะลูกค้า)
+
+- โครงถอดจากเว็บ Rakpatai: `exclusive/index.html` เป็น hub รวม **Dashboard พอร์ต /
+  จดหมาย-บทความลูกค้า / วิดีโอ member** — การ์ดของรายการที่มี `tier: "member"`
+  ใน articles.js / media.js จะติดป้าย 🔒 และขึ้นใน hub อัตโนมัติ
+- **รหัสเดโม: `CGSI2026`** (เก็บใน gate.js เป็น SHA-256 · จำใน sessionStorage ปิดแท็บ = ล็อกใหม่)
+- วิธีเพิ่มเนื้อหา member: ใส่ `tier: "member"` ใน entry + วางไฟล์หน้าเดี่ยวใน `exclusive/`
+  (ก็อปหน้า member ที่มีอยู่เป็น template แล้วอย่าลืม `<script src="../assets/js/gate.js">` ใน head)
+- ⚠️ **การกันด้วย gate.js เป็นเดโมเท่านั้น** — ไฟล์ยังอยู่ใน repo (public) และ view-source ได้
+  ก่อนใช้จริงต้องกันโฟลเดอร์ `/exclusive/` ที่ระดับ hosting เช่น **Cloudflare Access** หรือ
+  Netlify + edge function (แบบเดียวกับเว็บ rakpatai) และย้าย repo เป็น private
+  หากจะเก็บเนื้อหาลูกค้าจริงไว้ในนั้น
 
 ## Design tokens (แก้สีที่เดียวใน `:root` ของ main.css)
 

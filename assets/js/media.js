@@ -14,9 +14,13 @@
        - podcast: embedType "spotify", embedId = "episode/<id>" หรือ "show/<id>"
      duration  ความยาว (แสดงบนการ์ด) เช่น "7:27"
      cover     รูป thumbnail (YouTube ใช้ img.youtube.com/vi/<id>/maxresdefault.jpg)
+     tier      "member" = เฉพาะลูกค้า → หน้าเดี่ยวอยู่ใน exclusive/
+               (การ์ดติดป้าย 🔒 และขึ้นในหน้า exclusive/index.html อัตโนมัติ)
    ============================================================ */
 
 const MEDIA = [
+
+
   {
     type: "video",
     slug: "etf-passive-distortion",
@@ -30,6 +34,18 @@ const MEDIA = [
     embedId: "2AZjwpwXtTo",
   },
   {
+    type: "video",
+    slug: "special-update-2026-06",
+    title: "Special Update (June 2026)",
+    excerpt:
+      "อัปเดตพิเศษประจำเดือนสำหรับลูกค้ากองทุนส่วนบุคคล — มุมมองตลาดและการปรับพอร์ตล่าสุด เฉพาะลูกค้าเท่านั้น",
+    date: "2026-06-14",
+    duration: "—",
+    tier: "member",
+    cover: "https://img.youtube.com/vi/KUxU6lIXOB0/maxresdefault.jpg",
+    embedType: "youtube",
+    embedId: "KUxU6lIXOB0",
+  },  {
     type: "video",
     slug: "humanoid-wars",
     title: "Humanoid Wars: สงครามหุ่นยนต์สองขั้วโลก",
@@ -78,6 +94,19 @@ const MEDIA = [
     embedId: "SIYeJipoPWs",
   },
   {
+    type: "video",
+    slug: "session-portfolio-construction",
+    title: "Session: จัดพอร์ตจริงตั้งแต่ศูนย์",
+    excerpt:
+      "เวิร์กช็อปจัดพอร์ตแบบ step-by-step ตั้งแต่กำหนดเป้าหมาย เลือกสัดส่วน จนถึงการ Rebalance — เฉพาะลูกค้ากองทุนส่วนบุคคล",
+    date: "2026-06-05",
+    duration: "55:22",
+    tier: "member",
+    cover:
+      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=80",
+    embedType: "youtube",
+    embedId: "aqz-KE-bpKQ", // ⚠️ ตัวอย่าง embed — เปลี่ยนเป็นวิดีโอจริงก่อนใช้
+  },  {
     type: "podcast",
     slug: "podcast-luxury-economics",
     title: "เศรษฐศาสตร์ของความหรูหรา — ทำไมของแพงยิ่งมีคนซื้อ",
