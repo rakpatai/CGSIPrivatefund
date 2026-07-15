@@ -19,6 +19,18 @@
    ============================================================ */
 
 const MEDIA = [
+  {
+    type: "video",
+    slug: "physical-ai-next-wave",
+    title: "\"Physical AI โอกาสการลงทุนนคลื่นลูกถัดไปของ AI\" พี่เปี๊ยก แมงเม่าสำราญ  กับ น้องออย CGSI EP160",
+    excerpt:
+      "รีแคป AI ถัดจาก infra สู่คลื่นใหม่ Physical AI — humanoid, robotics, drone และ autonomous vehicle พร้อมไล่ value chain 7 layer และ Tier หุ้นจีนกลุ่ม precision component ที่น่าจับตา",
+    date: "2026-07-15",
+    duration: "1:04:50",
+    cover: "https://img.youtube.com/vi/sPu3E_M6SwA/sddefault.jpg",
+    embedType: "youtube",
+    embedId: "sPu3E_M6SwA",
+  },
 
 
   {
